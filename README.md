@@ -1,16 +1,16 @@
 # Express-Survey
 
-Quickly and easily create a survey with Express/Node.
+Quickly and easily create surveys with Express/Node.
 
-# Getting Started In Three Easy Steps
+## Getting Started In Three Easy Steps
 
-## Step 1 - Install node dependencies
+#### Step 1 - Install node dependencies
 
 ```
 npm install --production
 ```
 
-## Step 2 - Define Your Survey
+#### Step 2 - Define Your Survey
 
 There are two JSON files that define your survey:
 
@@ -36,13 +36,18 @@ Examples:
     "field_set": "example_field_set"
 }
 ```
-## Step 3 - Startup the Express Server
+#### Step 3 - Startup the Express Server
 
 ```
 npm start
 ```
 
-# Other notes
+The results:
+
+![Survey Questions Page](https://raw.githubusercontent.com/jonmbake/screenshots/master/express-survey/example_survey.png)
+![Survey Questions Results Page](https://raw.githubusercontent.com/jonmbake/screenshots/master/express-survey/example_survey_results.png)
+
+## Other notes
 
 Results are stored in a sqlite database.  Each survey instance will have a corresponding database file in the *db* directory.  You can query results directory from the database:
 
@@ -55,5 +60,8 @@ sqlite> select * from responses;
 sqlite>
 ```
 
+# To Do
 
-
+1. Add Field Validation
+2. Allow hot loading of survey instances (currently you have to restart the server to pick up new instances)
+3. Add stop/start date property to survey instance
