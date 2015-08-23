@@ -1,0 +1,5 @@
+[
+	{"title": "On a scale of 1 to 10 how much do you like this framework?", "name": "scale", "type": "number"},
+	{"title": "What do you like about this survey framework?", "name": "likeWhat", "type": "text"},
+	{"title": "Who is your favorite spice girl?", "name": "spiceGirls", "type": "select", "options": ["Posh", "Ginger", "Baby", "Scary", "Sporty"]}
+]

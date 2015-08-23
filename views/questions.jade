@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  div.container
+    div.page-header
+      h1= title
+    p= message
+    form(role="form", action="#{url}", method="post")
+      each f in fields
+        div.form-group
+          label(for=f.name)= f.title
+          case f.type
+            when 'number'
+              include ./fields/number.jade
+            when 'text'
+              include ./fields/text.jade
+            when 'select'
+              include ./fields/select.jade
+      div.form-group
+        button.btn.btn-primary(type="submit") Submit
+    a(href="#{url}/results") Results

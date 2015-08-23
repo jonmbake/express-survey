@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  div.container
+    div.page-header
+      h1= title + ' Results'
+    table(class="table table-striped")
+      thead
+        each f in fields
+          th= f.title
+      tbody
+        each r in results
+          tr
+            each f in fields
+              td= r[f.name]
+    a(href="#{url}") Back
