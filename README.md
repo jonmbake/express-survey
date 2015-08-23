@@ -42,9 +42,12 @@ Examples:
 npm start
 ```
 
-The results:
+### The Results:
 
+*Questions Page using the above JSON config files*
 ![Survey Questions Page](https://raw.githubusercontent.com/jonmbake/screenshots/master/express-survey/example_survey.png)
+
+*Results Page using the above JSON config files*
 ![Survey Questions Results Page](https://raw.githubusercontent.com/jonmbake/screenshots/master/express-survey/example_survey_results.png)
 
 ## Other notes
