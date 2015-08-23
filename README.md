@@ -52,7 +52,7 @@ npm start
 
 ## Other notes
 
-Results are stored in a sqlite database.  Each survey instance will have a corresponding database file in the *db* directory.  You can query results directory from the database:
+Results are stored in a sqlite database.  Each survey instance will have a corresponding database file in the *db* directory.  You can query results directly from the database:
 
 ```bash
 $> sqlite3 db/example.db
