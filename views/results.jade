@@ -13,4 +13,7 @@ block content
           tr
             each f in fields
               td= r[f.name]
+      tfoot
+        tr
+          td(colspan="#{results.length}") Total Number of Results: #{results.length}
     a(href="#{url}") Back
