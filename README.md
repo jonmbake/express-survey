@@ -14,7 +14,7 @@ npm install --production
 
 There are two JSON files that define your survey:
 
-1. **Field Set Definition** - a field set defines the fields that will be used in the survey. Field Set definitions live in [field_sets](field_sets) directory.  A *title*, *name* and *type* property must be defined.
+1. **Field Set Definition** - a field set defines the fields that will be used in the survey. Field Set definitions live in [field_sets](field_sets) directory.  A *title*, *name* and *type* property must be defined. The *validations* property is optional.  Valid validaton properties are *required*, *min* and *max* (for number fields).
 2. **Survey Instance**  A survey instance uses a *Field Set* to define an instance of a survey.  A *title* and *field_set* property must be defined.
 
 Examples:
@@ -22,9 +22,9 @@ Examples:
 
 ```json
 [
-    {"title": "On a scale of 1 to 10 how much do you like this framework?", "name": "scale", "type": "number"},
-    {"title": "What do you like about this survey framework?", "name": "likeWhat", "type": "text"},
-    {"title": "Who is your favorite spice girl?", "name": "spiceGirls", "type": "select", "options": ["Posh", "Ginger", "Baby", "Scary", "Sporty"]}
+  {"title": "On a scale of 1 to 10, how much do you like this framework?", "name": "scale", "type": "number", "validations": {"required": true, "min": 1, "max": 10}},
+  {"title": "What do you like about this survey framework?", "name": "likeWhat", "type": "text", "validations": {"required": true}},
+  {"title": "What aspect of the framework needs the most work?", "name": "mostWork", "type": "select", "options": ["UI", "Code Understandability", "Code Structure", "Documentation", "Demo"]}
 ]
 ```
 
@@ -65,6 +65,10 @@ sqlite>
 
 # To Do
 
-1. Add Field Validation
+1. Result Column sort
+2. Add message property to survey instance config
+3. Allow for invite only survey instance
+    1. Link with token param sent via email
 2. Allow hot loading of survey instances (currently you have to restart the server to pick up new instances)
 3. Add stop/start date property to survey instance
+

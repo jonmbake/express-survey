@@ -1,5 +1,5 @@
 [
-	{"title": "On a scale of 1 to 10 how much do you like this framework?", "name": "scale", "type": "number"},
-	{"title": "What do you like about this survey framework?", "name": "likeWhat", "type": "text"},
-	{"title": "Who is your favorite spice girl?", "name": "spiceGirls", "type": "select", "options": ["Posh", "Ginger", "Baby", "Scary", "Sporty"]}
+  {"title": "On a scale of 1 to 10, how much do you like this framework?", "name": "scale", "type": "number", "validations": {"required": true, "min": 1, "max": 10}},
+  {"title": "What do you like about this survey framework?", "name": "likeWhat", "type": "text", "validations": {"required": true}},
+  {"title": "What aspect of the framework needs the most work?", "name": "mostWork", "type": "select", "options": ["UI", "Code Understandability", "Code Structure", "Documentation", "Demo"]}
 ]

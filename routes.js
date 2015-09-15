@@ -19,9 +19,14 @@ fs.readdirSync(path.join(__dirname, 'survey_instances')).forEach(function(si) {
     });
   });
   router.post(instance.url, function(req, res, next) {
-    instance.save(req.body).then(function () {
+    var submittedValues = req.body;
+    instance.save(submittedValues).then(
+      function () {
         res.redirect(instance.url + '/results');
-    });
+      },
+      function (fieldErrors) {
+        res.status(400).render('questions', _.extend(instance.toJSON(), {fieldErrors: fieldErrors, values: submittedValues}));
+      });
   });
 });
 

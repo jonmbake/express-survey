@@ -7,8 +7,8 @@ block content
     p= message
     form(role="form", action="#{url}", method="post")
       each f in fields
-        div.form-group
-          label(for=f.name)= f.title
+        div.form-group(class=fieldErrors && fieldErrors.hasOwnProperty(f.name) ? "has-error" : "")
+          label.control-label(for=f.name) #{f.title} #{f.validations && f.validations.required ? "*" : ""}
           case f.type
             when 'number'
               include ./fields/number.jade
@@ -16,6 +16,8 @@ block content
               include ./fields/text.jade
             when 'select'
               include ./fields/select.jade
+          if fieldErrors && fieldErrors.hasOwnProperty(f.name)
+            span.help-block= fieldErrors[f.name]
       div.form-group
         button.btn.btn-primary(type="submit") Submit
     a(href="#{url}/results") Results
