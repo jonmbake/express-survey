@@ -32,10 +32,13 @@ Examples:
 
 ```json
 {
-    "title": "An Example Survey",
-    "field_set": "example_field_set"
+  "title": "An Example Survey",
+  "message": "This is an example survey created using the <a href='https://github.com/jonmbake/express-survey'>Express Survey Framework</a>.",
+  "html_escape_message": false,
+  "field_set": "example_field_set"
 }
 ```
+
 #### Step 3 - Startup the Express Server
 
 ```

@@ -1,4 +1,3 @@
 select.form-control(name=f.name)
-  option foo
   each o in f.options
     option(selected=values && values[f.name]===o)= o
