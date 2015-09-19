@@ -6,8 +6,13 @@ block content
       h1= title + ' Results'
     table(class="table table-striped")
       thead
-        each f in fields
-          th= f.title
+        each f, index in fields
+          th
+            - var isSortCol = index + 1 == sortBy
+            - var nextSortDir = isSortCol && sortDir === 'asc' ? 'desc' : 'asc';
+            a(href="#{url}/results?sortBy=#{index+1}&sortDir=#{nextSortDir}", style={color: 'black'})= f.title
+            if isSortCol
+              span.glyphicon(class=sortDir === 'asc' ? 'glyphicon-arrow-down' : 'glyphicon-arrow-up')
       tbody
         each r in results
           tr

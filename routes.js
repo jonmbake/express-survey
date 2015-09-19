@@ -12,9 +12,9 @@ fs.readdirSync(path.join(__dirname, 'survey_instances')).forEach(function(si) {
     res.render('questions', instance.toJSON());
   });
   router.get(instance.url + '/results', function(req, res) {
-    instance.results().then(function (results) {
+    instance.results(req.query.sortBy, req.query.sortDir).then(function (results) {
       var i = instance.toJSON();
-      i.results = results;
+      _.extend(i, results);
       res.render('results', i);
     });
   });
