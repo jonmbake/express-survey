@@ -1,0 +1,7 @@
+{
+  "title": "An Example of an Invite-Only Survey",
+  "message": "This is an example invite-only survey created using the <a href='https://github.com/jonmbake/express-survey'>Express Survey Framework</a>.  With an invite-only survey, you provide a list of name/email addresses and only those people can access the survey.",
+  "html_escape_message": false,
+  "invite_list": "example_invite_list",
+  "field_set": "example_field_set"
+}

@@ -1,0 +1,9 @@
+{
+	"mailer": {
+		"service": "Gmail",
+		"from_address": "from_address@gmail.com",
+		"from_password": "",
+		"mail_template": "Please complete the survey at <%- surveyURL %>."
+	},
+	"app_url": "http://localhost"
+}

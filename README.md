@@ -66,12 +66,3 @@ sqlite> select * from responses;
 sqlite>
 ```
 
-# To Do
-
-1. Result Column sort
-2. Add message property to survey instance config
-3. Allow for invite only survey instance
-    1. Link with token param sent via email
-2. Allow hot loading of survey instances (currently you have to restart the server to pick up new instances)
-3. Add stop/start date property to survey instance
-

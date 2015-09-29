@@ -14,11 +14,13 @@
     "serve-favicon": "~2.3.0",
     "sqlite3": "~3.0.10",
     "underscore": "~1.8.3",
-    "q": "1.4.0"
+    "q": "~1.4.0",
+    "nodemailer": "~1.5.0"
   },
   "devDependencies": {
     "mocha": "~2.2.5",
     "chai": "~3.2.0",
+    "sinon-chai": "~2.8.0",
     "supertest": "~1.0.1"
   }
 }
