@@ -1,9 +1,9 @@
 {
-	"mailer": {
-		"service": "Gmail",
-		"from_address": "from_address@gmail.com",
-		"from_password": "",
-		"mail_template": "Please complete the survey at <%- surveyURL %>."
-	},
-	"app_url": "http://localhost"
+  "email_service": "Gmail",
+  "email_from_address": "from_address@gmail.com",
+  "email_from_password": "my_password!",
+  "slack_webhook_url": "https://hooks.slack.com/services/XXXXXXX",
+  "slack_from_username": "Express Survey",
+  "invitation_template": "You have been invited to complete a survey at <%- surveyURL %>.",
+  "app_url": "http://localhost"
 }

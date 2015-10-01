@@ -15,7 +15,8 @@
     "sqlite3": "~3.0.10",
     "underscore": "~1.8.3",
     "q": "~1.4.0",
-    "nodemailer": "~1.5.0"
+    "nodemailer": "~1.5.0",
+    "request": "~2.64.0"
   },
   "devDependencies": {
     "mocha": "~2.2.5",

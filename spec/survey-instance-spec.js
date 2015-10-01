@@ -42,17 +42,17 @@ describe('Open SurveyInstance', function() {
   });
 });
 
-var mailSend;
+var send;
 describe('Invite-only SurveyInstance', function() {
   before(function () {
-    mailSend = sinon.spy();
-    si = new SurveyInstance('invite_only_example', { dbFiileLocation: path.join(__dirname, 'invite_only_example.db'), mailTransporter: {sendMail: mailSend} });
+    send = sinon.spy();
+    si = new SurveyInstance('invite_only_example', { dbFiileLocation: path.join(__dirname, 'invite_only_example.db'), invitationTransporter: {send: send} });
   });
   after(function () {
     fs.unlink(path.join(__dirname, '..', 'db', 'invite_only_example.db'));
   });
   it('should mail out invitations', function () {
-    expect(mailSend).to.have.been.calledWith(sinon.match({ from: 'from_address@gmail.com', subject: si.title, html: sinon.match(/Please complete the survey at http:\/\/localhost\/invite_only_example\?token=.{128}\./) }));
+    expect(send).to.have.been.calledWith(sinon.match({ to: 'jonmbake@gmail.com', surveyTitle: si.title, message: sinon.match(/You have been invited to complete a survey at http:\/\/localhost\/invite_only_example\?token=.{128}\./) }));
   });
   it('should not be able to save without token', function (done) {
     var v = {scale: 10, likeWhat: 'foo', mostWork: 'UI'};

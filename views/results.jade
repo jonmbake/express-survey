@@ -2,23 +2,31 @@ extends layout
 
 block content
   div.container
-    div.page-header
-      h1= title + ' Results'
-    table(class="table table-striped")
-      thead
-        each f, index in fields
-          th
-            - var isSortCol = index + 1 == sortBy
-            - var nextSortDir = isSortCol && sortDir === 'asc' ? 'desc' : 'asc';
-            a(href="#{url}/results?sortBy=#{index+1}&sortDir=#{nextSortDir}", style={color: 'black'})= f.title
-            if isSortCol
-              span.glyphicon(class=sortDir === 'asc' ? 'glyphicon-arrow-down' : 'glyphicon-arrow-up')
-      tbody
-        each r in results
+    div.row
+      div.page-header
+        h1= title + ' Responses'
+      table(class="table table-striped")
+        thead
+          each f, index in fields
+            th
+              - var isSortCol = index + 1 == sortBy
+              - var nextSortDir = isSortCol && sortDir === 'asc' ? 'desc' : 'asc';
+              a(href="#{url}/results?sortBy=#{index+1}&sortDir=#{nextSortDir}", style={color: 'black'})= f.title
+              if isSortCol
+                span.glyphicon(class=sortDir === 'asc' ? 'glyphicon-arrow-down' : 'glyphicon-arrow-up')
+        tbody
+          each r in results
+            tr
+              each f in fields
+                td= r[f.name]
+        tfoot
           tr
-            each f in fields
-              td= r[f.name]
-      tfoot
-        tr
-          td(colspan="#{fields.length}") Total Number of Results: #{results.length}
-    a(href="#{url}") Back
+            td(colspan="#{fields.length}") Total Number of Results: #{results.length}
+    if awaitingReply
+      div.row
+        h3 Awaiting Responses From:
+        ol
+          each ar in awaitingReply
+            li= ar.name
+    div.row
+      a(href="#{url}#{token ? '?token=' + token : ''}") Back
