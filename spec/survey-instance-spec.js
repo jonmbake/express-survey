@@ -1,3 +1,4 @@
+var _ = require('underscore');
 var assert = require('assert');
 var fs = require('fs');
 var path = require('path');
@@ -42,6 +43,7 @@ describe('Open SurveyInstance', function() {
   });
 });
 
+//var logArgs = function () { console.log(arguments); };
 var send;
 describe('Invite-only SurveyInstance', function() {
   before(function () {
@@ -52,7 +54,7 @@ describe('Invite-only SurveyInstance', function() {
     fs.unlink(path.join(__dirname, '..', 'db', 'invite_only_example.db'));
   });
   it('should mail out invitations', function () {
-    expect(send).to.have.been.calledWith(sinon.match({ to: 'jonmbake@gmail.com', surveyTitle: si.title, message: sinon.match(/You have been invited to complete a survey at http:\/\/localhost\/invite_only_example\?token=.{128}\./) }));
+    expect(send).to.have.been.calledWith(sinon.match({ to: '@jonmbake', surveyTitle: si.title, message: sinon.match(/You have been invited to complete a survey at http:\/\/localhost\/invite_only_example\?token=.{96}\./) }));
   });
   it('should not be able to save without token', function (done) {
     var v = {scale: 10, likeWhat: 'foo', mostWork: 'UI'};
@@ -75,15 +77,23 @@ describe('Invite-only SurveyInstance', function() {
         done();
       });
   });
-  it('should be able to save and get results with token', function (done) {
+  it('should be able to save, update and get results with token', function (done) {
     var v = {scale: 10, likeWhat: 'foo', mostWork: 'UI'};
-    si.db._getToken('jonmbake@gmail.com').then(function (token) {
+    var v2 = {scale: 5, likeWhat: 'bar', mostWork: 'Documentation'};
+    si.db._getToken('@jonmbake').then(function (token) {
       si.save(v, token).then(function () {
         setTimeout(function () {
           si.results(null, null, token).then(function (results) {
             assert.equal(results.results.length, 1, 'Correct number of results');
-            assert.deepEqual(results.results[0], v, 'Results are returned');
-            done();
+            assert.deepEqual(results.results[0], _.extend({_name: 'Jon Bake', response_id: 1}, v), 'Results are returned');
+            si.save(v2, token).then(function () {
+              setTimeout(function () {
+                si.getResponse(token).then(function (response) {
+                  assert.deepEqual(response, _.extend({id: 1}, v2));
+                  done();
+                });
+              });
+            });
           });
         });
       });

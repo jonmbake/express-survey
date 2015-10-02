@@ -5,10 +5,10 @@ var path = require('path');
 var SurveyInstance = require('./lib/SurveyInstance');
 var router = express.Router();
 
-fs.readdirSync(path.join(__dirname, 'survey_instances')).forEach(function(si) {
+fs.readdirSync(path.join(__dirname, 'json', 'survey_instances')).forEach(function(si) {
   var instance = new SurveyInstance(si);
 
-  router.use(function(req, res, next) {
+  router.use(instance.url, function(req, res, next) {
     instance.hasAccess(req.query.token)
     .then(function () { next(); }, function () {
       res.status(401).render('error', { message: 'Access Denied', error: {status: 401} });
@@ -16,14 +16,14 @@ fs.readdirSync(path.join(__dirname, 'survey_instances')).forEach(function(si) {
   });
 
   router.get(instance.url, function(req, res) {
-    instance.data(req.query.token).then(function (values) {
+    instance.getResponse(req.query.token).then(function (values) {
       res.render('questions', _.extend(instance.toJSON(), {token: req.query.token, values: values}));
     });
   });
 
   router.get(instance.url + '/results', function(req, res) {
     instance.results(req.query.sortBy, req.query.sortDir, req.query.token).then(function (results) {
-      var i = instance.toJSON();
+      var i = instance.toJSON(true);
       _.extend(i, results, {token: req.query.token});
       res.render('results', i);
     });
