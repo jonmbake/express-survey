@@ -1,6 +1,6 @@
 # Express-Survey
 
-A framework to quickly create surveys, written on top of Express.js.
+A framework to quickly create surveys, written on top of [Express.js](https://github.com/strongloop/express).
 
 To get started:
 
