@@ -1,6 +1,6 @@
 # Express-Survey
 
-A framework to quickly create surveys, written on top of Express.js.
+A framework to quickly create surveys, written on top of [Express.js](https://github.com/strongloop/express).
 
 To get started:
 
@@ -11,7 +11,7 @@ npm start
 open http://localhost:3000/example
 ```
 
-The questions for the example survey defined in `json/survey_instances/example.json` will be displayed within the web browsers.  Navigating to `http://localhost:3000/example/results` will display the results of the survey.
+The questions for the example survey, defined in `json/survey_instances/example.json`, will be displayed within the browser.  Navigating to `http://localhost:3000/example/results` will display the results of the survey.
 
 ## Survey Types
 
