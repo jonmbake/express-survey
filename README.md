@@ -11,7 +11,7 @@ npm start
 open http://localhost:3000/example
 ```
 
-The example survey defined in `json/survey_instances/example.json` will be displayed.  Navigating to `http://localhost:3000/example/results` will display the results of the survey.
+The questions for the example survey defined in `json/survey_instances/example.json` will be displayed within the web browsers.  Navigating to `http://localhost:3000/example/results` will display the results of the survey.
 
 ## Survey Types
 

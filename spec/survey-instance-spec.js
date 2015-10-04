@@ -34,7 +34,7 @@ describe('Open SurveyInstance', function() {
           assert.equal(results.sortBy, 1, 'Sorting by correct column');
           assert.equal(results.results.length, 3, 'Correct number of results');
           assert.deepEqual(results.results[0], v2, 'Correctly sorting by first column');
-          si.results(1, 'desc').then(function (results2) {
+          si.results(2, 'desc').then(function (results2) {
             assert.deepEqual(results2.results[0], v3, 'Correctly sorting by second column desc');
             done();
           });
