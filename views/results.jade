@@ -27,6 +27,6 @@ block content
         h3 Awaiting Responses From:
         ol
           each ar in awaitingReply
-            li= ar.name
+            li= ar._name
     div.row
       a(href="#{url}#{token ? '?token=' + token : ''}") Back

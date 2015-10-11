@@ -10,17 +10,22 @@ block content
       p.lead= message
     form(role="form", action="#{url}#{token ? '?token=' + token : ''}", method="post")
       each f in fields
-        div.form-group(class=fieldErrors && fieldErrors.hasOwnProperty(f.name) ? "has-error" : "")
-          label.control-label(for=f.name) #{f.title} #{f.validations && f.validations.required ? "*" : ""}
-          case f.type
-            when 'number'
-              include ./fields/number.jade
-            when 'text'
-              include ./fields/text.jade
-            when 'select'
-              include ./fields/select.jade
-          if fieldErrors && fieldErrors.hasOwnProperty(f.name)
-            span.help-block= fieldErrors[f.name]
+        if f.type !== 'checkbox'
+          div.form-group(class=fieldErrors && fieldErrors.hasOwnProperty(f.name) ? "has-error" : "")
+            label.control-label(for=f.name) #{f.title} #{f.validations && f.validations.required ? "*" : ""}
+            case f.type
+              when 'number'
+                include ./fields/number.jade
+              when 'text'
+                include ./fields/text.jade
+              when 'select'
+                include ./fields/select.jade
+            if fieldErrors && fieldErrors.hasOwnProperty(f.name)
+              span.help-block= fieldErrors[f.name]
+        else
+          div.checkbox
+            label
+              include ./fields/checkbox.jade
       div.form-group
         button.btn.btn-primary(type="submit") Submit
     a(href="#{url}/results#{token ? '?token=' + token : ''}") Responses
