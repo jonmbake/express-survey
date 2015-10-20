@@ -1,8 +1,12 @@
 var request = require('supertest');
+var fs = require('fs');
+var path = require('path');
+
 describe('routes', function () {
   var server;
   before(function () {
     server = require('../app');
+    fs.unlink(path.join(__dirname, 'example.db'));
   });
   it('should be able to get example questions', function (done) {
     request(server)
@@ -26,6 +30,7 @@ describe('validation', function () {
   var server;
   before(function () {
     server = require('../app');
+    fs.unlink(path.join(__dirname, 'example.db'));
   });
   it('should get error when not posting required field', function (done) {
     request(server)

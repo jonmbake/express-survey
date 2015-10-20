@@ -10,7 +10,10 @@ block content
       p.lead= message
     form(role="form", action="#{url}#{token ? '?token=' + token : ''}", method="post")
       each f in fields
-        if f.type !== 'checkbox'
+        //- field names starting with an underscore are considered auto-generated aka internal... don't show on questions page.  Note: This should be refactored; it is not clear.
+        if f.name.charAt(0) === '_'
+          return
+        else if f.type !== 'checkbox'
           div.form-group(class=fieldErrors && fieldErrors.hasOwnProperty(f.name) ? "has-error" : "")
             label.control-label(for=f.name) #{f.title} #{f.validations && f.validations.required ? "*" : ""}
             case f.type

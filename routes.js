@@ -23,7 +23,7 @@ fs.readdirSync(path.join(__dirname, 'json', 'survey_instances')).forEach(functio
 
   router.get(instance.url + '/results', function(req, res) {
     instance.results(req.query.sortBy, req.query.sortDir, req.query.token).then(function (results) {
-      var i = instance.toJSON(true);
+      var i = instance.toJSON();
       _.extend(i, results, {token: req.query.token});
       res.render('results', i);
     });
