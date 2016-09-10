@@ -10,14 +10,17 @@ fs.readdirSync(path.join(__dirname, 'json', 'survey_instances')).forEach(functio
 
   router.use(instance.url, function(req, res, next) {
     instance.hasAccess(req.query.token)
-    .then(function () { next(); }, function () {
+    .then(function (user) {
+      res.user = user;
+      next();
+    }, function () {
       res.status(401).render('error', { message: 'Access Denied', error: {status: 401} });
     });
   });
 
   router.get(instance.url, function(req, res) {
     instance.getResponse(req.query.token).then(function (values) {
-      res.render('questions', _.extend(instance.toJSON(), {token: req.query.token, values: values}));
+      res.render('questions', _.extend(instance.toJSON(), {user: res.user, values: values}));
     });
   });
 

@@ -4,11 +4,13 @@ block content
   div.container
     div.page-header
       h1= title
+    if user && user.name
+      h3 Welcome, #{user.name}!
     if html_escape_message === false
       p.lead!= message
     else
       p.lead= message
-    form(role="form", action="#{url}#{token ? '?token=' + token : ''}", method="post")
+    form(role="form", action="#{url}#{user && user.token ? '?token=' + user.token : ''}", method="post")
       each f in fields
         //- field names starting with an underscore are considered auto-generated aka internal... don't show on questions page.  Note: This should be refactored; it is not clear.
         if f.name.charAt(0) === '_'
@@ -31,4 +33,4 @@ block content
               include ./fields/checkbox.jade
       div.form-group
         button.btn.btn-primary(type="submit") Submit
-    a(href="#{url}/results#{token ? '?token=' + token : ''}") Responses
+    a(href="#{url}/results#{user && user.token ? '?token=' + user.token : ''}") Responses
